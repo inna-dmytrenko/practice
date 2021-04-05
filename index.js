@@ -18,16 +18,29 @@ const parentContainer = document.getElementById("container");
 
 parentContainer.append(ulList);
 
-cars.forEach((car, index) => {
-    const liItem = document.createElement("li");
-    liItem.textContent = car;
-    if (index % 2 === 0) {
-        liItem.classList.add("even");
+const renderPage = (newItem = null) => {
+    if (newItem) {
+        const carsContainer = document.getElementById('carsContainer');
+        const newItemLi = document.createElement('li');
+        newItemLi.textContent = newItem;
+        newItemLi.classList.add((cars.length-1) % 2 === 0 ? 'even' : 'odd');
+
+        carsContainer.appendChild(newItemLi);
     } else {
-        liItem.classList.add("odd");
+        cars.forEach((car, index) => {
+            const liItem = document.createElement("li");
+            liItem.textContent = car;
+            if (index % 2 === 0) {
+                liItem.classList.add("even");
+            } else {
+                liItem.classList.add("odd");
+            }
+            ulList.append(liItem);
+        });
     }
-    ulList.append(liItem);
-})
+};
+renderPage();
+
 
 const buttonContainer = document.createElement('div');
 
@@ -62,11 +75,13 @@ btnRemove.textContent = "Удалить";
 btnAdd.addEventListener('click', event => {
     console.log(event);
     const input = document.getElementById('addInput')
-    console.log(input.value)
-    const carsContainer = document.getElementById('carsContainer');
-    const newItem = document.createElement('li');
-    newItem.textContent = input.value;
-    carsContainer.appendChild(newItem);
-    
+    console.log(input.value);
+    cars.push(input.value);
+    renderPage(input.value)
+    // const carsContainer = document.getElementById('carsContainer');
+    // const newItem = document.createElement('li');
+    // newItem.textContent = input.value;
+    // carsContainer.appendChild(newItem);
+
 })
 
