@@ -12,6 +12,7 @@
 const cars = ["Mercedes", 'BMW', 'Volvo'];
 
 const ulList = document.createElement("ul");
+ulList.id = 'carsContainer';
 
 const parentContainer = document.getElementById("container");
 
@@ -39,6 +40,8 @@ const btnContainer = document.getElementById('btnContainer');
 
 const addInput = document.createElement('input');
 
+addInput.id = "addInput"
+
 btnContainer.append(addInput);
 addInput.style.display = 'block';
 addInput.style.marginBottom = "10px"
@@ -58,5 +61,12 @@ btnRemove.textContent = "Удалить";
 
 btnAdd.addEventListener('click', event => {
     console.log(event);
+    const input = document.getElementById('addInput')
+    console.log(input.value)
+    const carsContainer = document.getElementById('carsContainer');
+    const newItem = document.createElement('li');
+    newItem.textContent = input.value;
+    carsContainer.appendChild(newItem);
+    
 })
 
