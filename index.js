@@ -75,9 +75,12 @@ btnRemove.textContent = "Удалить";
 btnAdd.addEventListener('click', event => {
     console.log(event);
     const input = document.getElementById('addInput')
-    console.log(input.value);
+    if (input.value) {
+         console.log(input.value);
     cars.push(input.value);
     renderPage(input.value)
+    }
+   
     // const carsContainer = document.getElementById('carsContainer');
     // const newItem = document.createElement('li');
     // newItem.textContent = input.value;
